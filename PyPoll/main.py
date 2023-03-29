@@ -52,9 +52,19 @@ print(f"Winner: {winner}")
 output = f'''Election Results \n
 ------------------------- \n
 Total Votes: {str(totalVotes)} \n
--------------------------
-"Winner: {winner}'''
+------------------------- \n
+------------------------- \n 
+"Winner: {winner} \n
+-------------------------'''
 
 with open(file_to_output, "w") as txt_file:
-		txt_file.write(output)
+    txt_file.write("Election Results\n")
+    txt_file.write("---------------------------------------\n")
+    txt_file.write("Total Vote: " + str(totalVotes) + "\n")
+    txt_file.write("---------------------------------------\n")
+    for candidate, votes in votesPerCandidate.items():
+        txt_file.write(candidate + ": " + "{:.3%}".format(votes/totalVotes) + "   (" +  str(votes) + ")" "\n")
+    txt_file.write("---------------------------------------\n")
+    txt_file.write("The winner is: " + winner + "\n")
+    txt_file.write("---------------------------------------\n")
 
